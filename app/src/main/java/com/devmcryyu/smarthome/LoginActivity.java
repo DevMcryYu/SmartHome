@@ -34,6 +34,7 @@ public class LoginActivity extends Activity {
     private ExecutorService mThreadPool;
     private Socket socket;
     private Context mContext;
+    private long firstTime = 0;
     /**
      * 接收服务器消息 变量
      */
@@ -152,5 +153,19 @@ public class LoginActivity extends Activity {
             }
         }
         return "isCorrect";
+    }
+
+    /**
+     * Double click Back to exit
+     */
+
+    public void onBackPressed() {
+        long secondTime = System.currentTimeMillis();
+        if (secondTime - firstTime > 2000) {
+            Toasty.info(LoginActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+            firstTime = secondTime;
+        } else {
+            System.exit(0);
+        }
     }
 }
