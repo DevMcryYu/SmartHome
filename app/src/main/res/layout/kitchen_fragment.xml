@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <TextView
+        android:id="@+id/kit_Temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="55dp"
+        android:text="厨房温度 :"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/kit_Smoke"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="120dp"
+        android:text="厨房烟雾 :"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/txt_kit_Temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignBottom="@+id/kit_Temperature"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="55dp"
+        android:layout_marginStart="30dp"
+        android:layout_toEndOf="@+id/kit_Temperature"
+        android:layout_toRightOf="@+id/kit_Temperature"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/txt_kit_Smog"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignBottom="@+id/kit_Smoke"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="55dp"
+        android:layout_marginStart="30dp"
+        android:layout_toEndOf="@+id/kit_Smoke"
+        android:layout_toRightOf="@+id/kit_Smoke"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+</RelativeLayout>

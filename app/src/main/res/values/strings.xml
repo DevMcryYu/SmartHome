@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SmartHome</string>
+    <string name="btnLivingRoom">客厅终端</string>
+    <string name="btnBedRoom">卧室终端</string>
+    <string name="btnKitchen">厨房终端</string>
+    <string name="btnCurtain">智能窗帘</string>
+    <string name="ip_input">请输入IP地址</string>
+    <string name="btn_no">Cancel</string>
+    <string name="btn_yes">OK</string>
+
+</resources>

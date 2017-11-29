@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/radioGroup"
+        android:layout_alignParentTop="true"
+        android:background="@color/white"></LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:gravity="bottom|center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/btn_livingroom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/menu_selector"
+            android:button="@null"
+            android:drawablePadding="2dp"
+            android:drawableTop="@mipmap/livingroom"
+            android:gravity="center"
+            android:text="@string/btnLivingRoom"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+
+        <RadioButton
+            android:id="@+id/btn_bedroom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/menu_selector"
+            android:button="@null"
+            android:drawablePadding="2dp"
+            android:drawableTop="@mipmap/bedroom"
+            android:gravity="center"
+            android:text="@string/btnBedRoom"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+
+
+        <RadioButton
+            android:id="@+id/btn_kitchen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/menu_selector"
+            android:button="@null"
+            android:drawablePadding="2dp"
+            android:drawableTop="@mipmap/kitchen"
+            android:gravity="center"
+            android:text="@string/btnKitchen"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+
+        <RadioButton
+            android:id="@+id/btn_curtain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/menu_selector"
+            android:button="@null"
+            android:drawablePadding="2dp"
+            android:drawableTop="@mipmap/curtain"
+            android:gravity="center"
+            android:text="@string/btnCurtain"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+    </RadioGroup>
+
+
+</RelativeLayout>

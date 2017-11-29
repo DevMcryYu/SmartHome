@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <TextView
+        android:id="@+id/bed_Temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="55dp"
+        android:text="卧室温度 :"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/bed_Light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="120dp"
+        android:text="卧室光强 :"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/bed_Body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="185dp"
+        android:text="人体红外 :"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/txt_bed_Temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignBottom="@+id/bed_Temperature"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="55dp"
+        android:layout_marginStart="30dp"
+        android:layout_toEndOf="@+id/bed_Temperature"
+        android:layout_toRightOf="@+id/bed_Temperature"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/txt_bed_Light"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignBottom="@+id/bed_Light"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="55dp"
+        android:layout_marginStart="30dp"
+        android:layout_toEndOf="@+id/bed_Light"
+        android:layout_toRightOf="@+id/bed_Light"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/txt_bed_Body"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignBottom="@+id/bed_Body"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="55dp"
+        android:layout_marginStart="30dp"
+        android:layout_toEndOf="@+id/bed_Body"
+        android:layout_toRightOf="@+id/bed_Body"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+
+</RelativeLayout>
