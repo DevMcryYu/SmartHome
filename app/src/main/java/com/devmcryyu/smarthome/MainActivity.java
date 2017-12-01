@@ -82,7 +82,7 @@ public class MainActivity extends Activity {
                     // 判断客户端和服务器是否连接成功
                     System.out.println(socket.isConnected());
                     if (socket != null && socket.isConnected())
-//                        System.out.println("connected");
+                        System.out.println("connected");
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
