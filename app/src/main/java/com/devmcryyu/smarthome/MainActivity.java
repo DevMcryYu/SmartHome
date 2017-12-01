@@ -4,50 +4,90 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-
 import java.io.BufferedReader;
-import java.io.InputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.ConnectException;
+import java.net.Socket;
 import java.util.concurrent.ExecutorService;
-
+import java.util.concurrent.Executors;
 import es.dmoral.toasty.Toasty;
 
 public class MainActivity extends Activity {
     private RadioGroup radiogroup;
     private long firstTime = 0;
     private Context mContext;
-    private Handler handler;
-    /**
-     * 接收服务器消息 变量
-     */
-    // 输入流对象
-    InputStream is;
-
-    // 输入流读取器对象
-    InputStreamReader isr;
-    BufferedReader br;
-
-    // 接收服务器发送过来的消息
-    String response;
+    private Bundle sendBundle;
+    private Socket socket;
+    private BufferedReader bufferedReader;
+    private String ipAddress;
+    protected Handler handler;
+    private LivingRoom_Fragment liv_frag;
+    private Kitchen_Fragment kit_frag;
+    private Curtain_Fragment cur_frag;
+    private BedRoom_Fragment bed_frag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
         mContext = this;
-//        IP_Fragment ip_frag = new IP_Fragment();
-//        FragmentManager fm = getFragmentManager();
-//        FragmentTransaction bt = fm.beginTransaction();
-//        bt.replace(R.id.frame, ip_frag);
-//        bt.commit();
+        handler = new Handler();
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        ipAddress = bundle.getString("ipAddress");
+        System.out.println(ipAddress);
+        ExecutorService mThreadPool = Executors.newFixedThreadPool(10);
+        mThreadPool.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    // 创建Socket对象 & 指定服务端的IP 及 端口号
+                    try {
+                        socket = new Socket(ipAddress, 8000);
+                    } catch (ConnectException e) {
+                        System.out.println("not connect");
+                    }
+                    bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    // 判断客户端和服务器是否连接成功
+                    System.out.println(socket.isConnected());
+                    if (socket != null && socket.isConnected())
+//                        System.out.println("connected");
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toasty.success(mContext, "连接成功", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    while (socket.isConnected()) {
+                        char[] buffer = new char[32];
+                        int length;
+                        length = bufferedReader.read(buffer);
+                        char[] msgReceiveArray = new char[length];
+                        for (int i = 0; i < length; i++)
+                            msgReceiveArray[i] = buffer[i];
+                        sendBundle=new Bundle();
+                        sendBundle.putString("receiveMsg", new String(msgReceiveArray));
+                        Intent mIntent = new Intent();
+                        mIntent.putExtras(sendBundle);
+                        mIntent.setAction("updateUI");
+                        sendBroadcast(mIntent);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         init();
-    }
 
+
+    }
 
     public void init() {
         /**
@@ -59,7 +99,8 @@ public class MainActivity extends Activity {
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
                 switch (radiogroup.getCheckedRadioButtonId()) {
                     case R.id.btn_livingroom: {
-                        LivingRoom_Fragment liv_frag = new LivingRoom_Fragment();
+                        if (liv_frag == null)
+                            liv_frag = new LivingRoom_Fragment();
                         FragmentManager fm = getFragmentManager();
                         FragmentTransaction bt = fm.beginTransaction();
                         bt.replace(R.id.frame, liv_frag);
@@ -70,7 +111,8 @@ public class MainActivity extends Activity {
                         break;
                     }
                     case R.id.btn_kitchen: {
-                        Kitchen_Fragment kit_frag = new Kitchen_Fragment();
+                        if (kit_frag == null)
+                            kit_frag = new Kitchen_Fragment();
                         FragmentManager fm = getFragmentManager();
                         FragmentTransaction bt = fm.beginTransaction();
                         bt.replace(R.id.frame, kit_frag);
@@ -80,7 +122,8 @@ public class MainActivity extends Activity {
                         break;
                     }
                     case R.id.btn_curtain: {
-                        Curtain_Fragment cur_frag = new Curtain_Fragment();
+                        if (cur_frag == null)
+                            cur_frag = new Curtain_Fragment();
                         FragmentManager fm = getFragmentManager();
                         FragmentTransaction bt = fm.beginTransaction();
                         bt.replace(R.id.frame, cur_frag);
@@ -90,7 +133,8 @@ public class MainActivity extends Activity {
                         break;
                     }
                     case R.id.btn_bedroom: {
-                        BedRoom_Fragment bed_frag = new BedRoom_Fragment();
+                        if (bed_frag == null)
+                            bed_frag = new BedRoom_Fragment();
                         FragmentManager fm = getFragmentManager();
                         FragmentTransaction bt = fm.beginTransaction();
                         bt.replace(R.id.frame, bed_frag);
