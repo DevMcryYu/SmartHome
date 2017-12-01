@@ -33,7 +33,7 @@ public class LivingRoom_Fragment extends Fragment {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    txtTemperature.setText(""+receiveMessage.liv_Temperature+ "℃");
+                    txtTemperature.setText("" + receiveMessage.liv_Temperature + "℃");
                     txtLight.setText("" + receiveMessage.liv_Light);
                     if (receiveMessage.liv_Body == '1')
                         txtBody.setText("有");

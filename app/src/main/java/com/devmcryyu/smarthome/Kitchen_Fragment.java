@@ -21,7 +21,6 @@ public class Kitchen_Fragment extends Fragment {
     private TextView txtTemperature;
     private TextView txtSmog;
     private Context mContext;
-    private MediaPlayer mediaPlayer1;
     private receiveMessage receiveMessage;
     private mBroadcastReceiver mBroadcastReceiver = new mBroadcastReceiver() {
         @Override
@@ -35,7 +34,7 @@ public class Kitchen_Fragment extends Fragment {
                 @Override
                 public void run() {
                     if (receiveMessage.kit_Smog >= 30) {
-                        MediaPlayer mediaPlayer1 = null;
+                        MediaPlayer mediaPlayer1;
                         mediaPlayer1 = MediaPlayer.create(mContext, R.raw.enen);
                         mediaPlayer1.start();
                     }

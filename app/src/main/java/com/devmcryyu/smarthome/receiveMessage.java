@@ -48,9 +48,10 @@ public class receiveMessage {
         bed_Light = Integer.parseInt(s.substring(19, 20)) * 10 + Integer.parseInt(s.substring(20, 21));
         bed_Body = s.charAt(21);
     }
-    public String toString(){
-        return " kit_Temperature= "+kit_Temperature+" kit_Smog= "+kit_Smog+" liv_Temperature= "+liv_Temperature+" liv_Light= "+liv_Light+
-                " liv_Body= "+liv_Body+"\n cur_Light= "+cur_Light+" cur_Shake= "+cur_Shake+" cur_State= "+cur_State+" bed_Temperature= "+bed_Temperature+
-                " bed_Light= "+bed_Light+" bed_Body= "+bed_Body+"\n";
+
+    public String toString() {
+        return " kit_Temperature= " + kit_Temperature + " kit_Smog= " + kit_Smog + " liv_Temperature= " + liv_Temperature + " liv_Light= " + liv_Light +
+                " liv_Body= " + liv_Body + "\n cur_Light= " + cur_Light + " cur_Shake= " + cur_Shake + " cur_State= " + cur_State + " bed_Temperature= " + bed_Temperature +
+                " bed_Light= " + bed_Light + " bed_Body= " + bed_Body + "\n";
     }
 }

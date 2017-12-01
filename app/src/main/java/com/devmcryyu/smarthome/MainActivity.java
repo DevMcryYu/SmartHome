@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,6 +20,7 @@ import java.net.ConnectException;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
 import es.dmoral.toasty.Toasty;
 
 public class MainActivity extends Activity {
@@ -28,7 +30,7 @@ public class MainActivity extends Activity {
     private Bundle sendBundle;
     private Socket socket;
     private BufferedReader bufferedReader;
-    private OutputStream outputStream ;
+    private OutputStream outputStream;
     private String ipAddress;
     protected Handler handler;
     private LivingRoom_Fragment liv_frag;
@@ -39,7 +41,7 @@ public class MainActivity extends Activity {
         @Override
         public void onReceive(Context context, final Intent intent) {
             final byte msg = intent.getExtras().getByte("send");
-            Thread thread=new Thread(new Runnable() {
+            Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
@@ -94,7 +96,7 @@ public class MainActivity extends Activity {
                         char[] msgReceiveArray = new char[length];
                         for (int i = 0; i < length; i++)
                             msgReceiveArray[i] = buffer[i];
-                        sendBundle=new Bundle();
+                        sendBundle = new Bundle();
                         sendBundle.putString("receiveMsg", new String(msgReceiveArray));
                         Intent mIntent = new Intent();
                         mIntent.putExtras(sendBundle);
@@ -110,6 +112,7 @@ public class MainActivity extends Activity {
 
 
     }
+
     @Override
     public void onResume() {
         super.onResume();

@@ -77,27 +77,5 @@ public class BedRoom_Fragment extends Fragment {
         //销毁在onResume()方法中的广播
         mContext.unregisterReceiver(mBroadcastReceiver);
     }
-//
-//    @Override
-//    public void dataReceiveEvent(DataReceiveEvent dataReceiveEvent) {
-//        char[] array=new char[dataReceiveEvent.getReceiveData().length()];
-//        for (int i=0; i<dataReceiveEvent.getReceiveData().length(); i++){
-//            array[i]=dataReceiveEvent.getReceiveData().charAt(i);
-//        }//把数据移到新的数组里面
-//        String s=new String(array);//把array数组转换成s字符串
-//        final float numTemperature= (float) (Integer.parseInt(s.substring(16,17))*10+
-//                Integer.parseInt(s.substring(17,18))+Integer.parseInt(s.substring(18,19))*0.1);
-//        final int numLight= Integer.parseInt(s.substring(19,20))*10+Integer.parseInt(s.substring(20,21));
-//        final char numBody=s.charAt(21);
-//        txtBody.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                txtTemperature.setText("" + numTemperature + "℃");
-//                txtLight.setText(""+ numLight);
-//                if (numBody == '1') txtBody.setText( "有");
-//                else txtBody.setText("无");
-//            }
-//        });
-//
-//    }
+
 }
