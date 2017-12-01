@@ -44,15 +44,6 @@ public class LivingRoom_Fragment extends Fragment {
         }
     };
 
-//    public Handler handler = new Handler() {
-//        public void handleMessage(Message msg) {
-//            super.handleMessage(msg);
-//            receiveMessage = (com.devmcryyu.smarthome.receiveMessage) msg.obj;
-//
-//        }
-//    };
-//    private receiveMessage receiveMessage;
-
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.livingroom_fragment, container, false);

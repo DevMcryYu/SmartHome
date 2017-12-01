@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.IdRes;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
@@ -26,12 +28,31 @@ public class MainActivity extends Activity {
     private Bundle sendBundle;
     private Socket socket;
     private BufferedReader bufferedReader;
+    private OutputStream outputStream ;
     private String ipAddress;
     protected Handler handler;
     private LivingRoom_Fragment liv_frag;
     private Kitchen_Fragment kit_frag;
     private Curtain_Fragment cur_frag;
     private BedRoom_Fragment bed_frag;
+    private mBroadcastReceiver mBroadcastReceiver = new mBroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, final Intent intent) {
+            final byte msg = intent.getExtras().getByte("send");
+            Thread thread=new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        outputStream.write(msg);
+                        outputStream.flush();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            thread.start();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +76,7 @@ public class MainActivity extends Activity {
                         System.out.println("not connect");
                     }
                     bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    outputStream = socket.getOutputStream();
                     // 判断客户端和服务器是否连接成功
                     System.out.println(socket.isConnected());
                     if (socket != null && socket.isConnected())
@@ -87,6 +109,26 @@ public class MainActivity extends Activity {
         init();
 
 
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        //实例化BroadcastReceiver子类 &  IntentFilter
+        IntentFilter intentFilter = new IntentFilter();
+
+        //设置接收广播的类型
+        intentFilter.addAction("send");
+
+        //调用Context的registerReceiver（）方法进行动态注册
+        mContext.registerReceiver(mBroadcastReceiver, intentFilter);
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //销毁在onResume()方法中的广播
+        mContext.unregisterReceiver(mBroadcastReceiver);
     }
 
     public void init() {

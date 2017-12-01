@@ -98,10 +98,14 @@ public class Curtain_Fragment extends Fragment implements View.OnClickListener {
                 try {
 //                    Toast.makeText(this.getActivity(), "正在开窗帘", Toast.LENGTH_SHORT).show();
                     Toasty.info(this.getActivity(), "正在开窗帘", Toast.LENGTH_SHORT).show();
+                    //向Activity发送请求
+                    Intent mIntent = new Intent();
+                    mIntent.putExtra("send",(byte) 1);
+                    mIntent.setAction("send");
+                    mContext.sendBroadcast(mIntent);
                 } catch (Exception e) {
 //                    Toast.makeText(this.getActivity(), "开窗帘失败", Toast.LENGTH_SHORT).show();
-                    Toasty.error(this.getActivity(), "开窗帘失败", Toast.LENGTH_SHORT).show();
-
+//                    Toasty.error(this.getActivity(), "开窗帘失败", Toast.LENGTH_SHORT).show();
                 }
                 break;
             }
@@ -109,9 +113,14 @@ public class Curtain_Fragment extends Fragment implements View.OnClickListener {
                 try {
 //                    Toast.makeText(this.getActivity(), "正在关窗帘", Toast.LENGTH_SHORT).show();
                     Toasty.info(this.getActivity(), "正在关窗帘", Toast.LENGTH_SHORT).show();
+                    //向Activity发送请求
+                    Intent mIntent = new Intent();
+                    mIntent.putExtra("send",(byte) 0);
+                    mIntent.setAction("send");
+                    mContext.sendBroadcast(mIntent);
                 } catch (Exception e) {
 //                    Toast.makeText(this.getActivity(), "关窗帘失败", Toast.LENGTH_SHORT).show();
-                    Toasty.error(this.getActivity(), "关窗帘失败", Toast.LENGTH_SHORT).show();
+//                    Toasty.error(this.getActivity(), "关窗帘失败", Toast.LENGTH_SHORT).show();
                 }
                 break;
             }

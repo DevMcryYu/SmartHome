@@ -4,19 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.BufferedReader;
-import java.net.Socket;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import es.dmoral.toasty.Toasty;
 
 /**
@@ -27,20 +19,13 @@ public class LoginActivity extends Activity {
     private TextView txt_ip;
     private Button btnConfirm;
     private Button btnCancel;
-    private Handler handler;
-    private ExecutorService mThreadPool;
-    private Socket socket;
     private Context mContext;
     private long firstTime = 0;
-    private BufferedReader bufferedReader;
-    private receiveMessage receiveMsg;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ip_fragment);
-        handler = new Handler(Looper.getMainLooper());
-        mThreadPool = Executors.newCachedThreadPool();                                              //实例化线程池
         mContext = this;
         btnConfirm = findViewById(R.id.btn_yes);
         btnConfirm.setOnClickListener(new View.OnClickListener() {
