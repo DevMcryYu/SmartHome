@@ -96,7 +96,6 @@ public class Curtain_Fragment extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.btnOpen: {
                 try {
-//                    Toast.makeText(this.getActivity(), "正在开窗帘", Toast.LENGTH_SHORT).show();
                     Toasty.info(this.getActivity(), "正在开窗帘", Toast.LENGTH_SHORT).show();
                     //向Activity发送请求
                     Intent mIntent = new Intent();
@@ -111,7 +110,6 @@ public class Curtain_Fragment extends Fragment implements View.OnClickListener {
             }
             case R.id.btnClose: {
                 try {
-//                    Toast.makeText(this.getActivity(), "正在关窗帘", Toast.LENGTH_SHORT).show();
                     Toasty.info(this.getActivity(), "正在关窗帘", Toast.LENGTH_SHORT).show();
                     //向Activity发送请求
                     Intent mIntent = new Intent();
